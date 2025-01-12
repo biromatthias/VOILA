@@ -143,15 +143,20 @@
             right: 20px;
             z-index: 1001;
             cursor: pointer;
-            padding: 15px;
+            padding: 10px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-radius: 10px;
+            border-radius: 50%;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
+        .hamburger:hover {
+            transform: scale(1.1); /* Enyhe nagyítás hover esetén */
+        }
+
+        
         .hamburger div {
             width: 25px;
             height: 3px;
@@ -186,6 +191,7 @@
             transition: 0.4s;
             z-index: 1000;
             padding: 80px 20px 20px;
+            padding-top: 60px;
             overflow-y: auto;
         }
 
@@ -193,6 +199,105 @@
             right: 0;
         }
 
+      /* Menüpontok stílusa */
+        .word-form h3 {
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 0; /* Eltávolítjuk az alsó margót */
+            border-radius: 20px; /* Lekerekített sarkok */
+            background: rgba(255, 255, 255, 0.3); /* Enyhén áttetsző háttér */
+            transition: all 0.3s ease; /* Átmenet hozzáadása */
+            display: flex; /* Flexbox a nyíl igazításához */
+            align-items: center; /* Függőleges középre igazítás */
+            justify-content: space-between; /* Elemeket egymástól a lehető legtávolabb helyezzük el */
+        }
+        
+        .word-form h3:hover {
+            transform: scale(1.05); /* Enyhe nagyítás hover esetén */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Finom árnyék hover esetén */
+        }
+        
+        /* Nyíl ikon hozzáadása (helyőrző) */
+        .word-form h3::after {
+            content: ''; /* Helyőrző tartalom */
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid #1f2937; /* Nyíl jobboldala */
+            border-bottom: 2px solid #1f2937; /* Nyíl alja */
+            transform: rotate(45deg); /* Elforgatás */
+            transition: transform 0.3s ease; /* Átmenet a nyíl forgatásához */
+        }
+        
+        /* Nyíl ikon forgatása lefelé, ha a menü nyitva van */
+        .word-form h3[aria-expanded="true"]::after {
+            transform: rotate(135deg);
+        }
+        
+        /* Legördülő menü stílusa */
+        .word-form > div {
+            border-radius: 20px; /* Lekerekített sarkok */
+            overflow: hidden; /* A lekerekítés miatt a belső elemek ne lógjanak ki */
+        }
+        
+        /* Gombok stílusa a legördülő menüben */
+        .word-form button {
+            padding: 8px 15px; /* Vékonyabb padding */
+            border-radius: 20px; /* Teljesen lekerekített */
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .word-form button:hover {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }  
+
+        .word-form button:first-of-type {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .word-form button:first-of-type:hover {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #projectName {
+            width: 93%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .project-card button {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 10px;
+        }
+        
+        .project-card button:hover {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
         .word-form {
             background: rgba(255, 255, 255, 0.3);
             padding: 20px;
@@ -214,93 +319,15 @@
             -webkit-backdrop-filter: blur(5px);
         }
 
-        .word-form button {
-            width: calc(100% - 20px);
-            max-width: 350px;
-            margin: 10px auto;
-            padding: 10px;
-            background: rgba(37, 99, 235, 0.1);
-            border: 1px solid rgba(37, 99, 235, 0.2);
-            border-radius: 8px;
-            color: #1f2937;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 1.1em;
-            font-weight: 600;
+        .project-card button:nth-child(2) { /* A második gomb a project-card div-en belül */
+            background: rgba(239, 68, 68, 0.2); /* Pirosas háttér */
+            border: 1px solid rgba(239, 68, 68, 0.3); /* Pirosas keret */
+            margin-left: 5px; /* Kis margó a bal oldalon */
         }
-
-        .word-form button:hover {
-            background: rgba(37, 99, 235, 0.2);
+        
+        .project-card button:nth-child(2):hover {
+            background: rgba(239, 68, 68, 0.3); /* Sötétebb piros háttér hover-re */
         }
-
-        .feedback {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 8px;
-            display: none;
-            z-index: 1002;
-            font-weight: 500;
-        }
-
-        .feedback.success {
-            background: rgba(34, 197, 94, 0.2);
-            color: #166534;
-        }
-
-        .feedback.error {
-            background: rgba(239, 68, 68, 0.2);
-            color: #991b1b;
-        }
-
-        .projects-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .project-card button {
-    padding: 5px 10px;
-    background: rgba(37, 99, 235, 0.1); /* Világoskék háttér */
-    border: 1px solid rgba(37, 99, 235, 0.2); /* Világoskék keret */
-    border-radius: 8px; /* Lekerekített sarkok */
-    color: #1f2937; /* Szövegszín */
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 1em; /* Betűméret */
-    font-weight: 500;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Példa betűtípus */
-    font-weight: 700; /* Példa betűvastagság (félkövér) */
-}
-
-.project-card button:hover {
-    background: rgba(37, 99, 235, 0.2); /* Sötétebb kék háttér hover-re */
-}
-
-.project-card button:nth-child(2) { /* A második gomb a project-card div-en belül */
-    background: rgba(239, 68, 68, 0.2); /* Pirosas háttér */
-    border: 1px solid rgba(239, 68, 68, 0.3); /* Pirosas keret */
-    margin-left: 5px; /* Kis margó a bal oldalon */
-}
-
-.project-card button:nth-child(2):hover {
-    background: rgba(239, 68, 68, 0.3); /* Sötétebb piros háttér hover-re */
-}
 
         .project-title {
             font-size: 1.2em;
@@ -335,7 +362,15 @@
             border-radius: 4px;
             cursor: pointer;
         }
-
+        .back-to-projects::before {
+            content: ""; /* Itt adhatod meg a nyíl ikon helyét, pl. background-image: url('nyil.svg'); */
+            display: inline-block;
+            width: 15px; /* A nyíl szélessége */
+            height: 15px; /* A nyíl magassága */
+            margin-right: 5px; /* Hely a nyíl és a szöveg között */
+            vertical-align: middle; /* Középre igazítás */
+            /* További stílusok a nyíl pozícionálásához és megjelenítéséhez */
+        }
         .back-to-projects {
             position: fixed;
             top: 10px;
@@ -347,6 +382,7 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
             z-index: 1001;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
     </style>
 </head>
@@ -641,12 +677,16 @@
 
         function toggleAddWordMenu() {
             const menu = document.getElementById('addWordMenu');
+            const h3 = document.querySelector('.word-form h3:nth-child(1)'); // Az "Új szó hozzáadása" menüpont
             menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+            h3.setAttribute('aria-expanded', menu.style.display !== 'none'); // Állapot attribútum beállítása
         }
-
+        
         function toggleImportMenu() {
             const menu = document.getElementById('importMenu');
+            const h3 = document.querySelector('.word-form h3:nth-child(2)');
             menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+            h3.setAttribute('aria-expanded', menu.style.display !== 'none');
         }
 
         function importWords() {
@@ -706,8 +746,11 @@
 
         function toggleImageImportMenu() {
             const menu = document.getElementById('imageImportMenu');
+            const h3 = document.querySelector('.word-form h3:nth-child(3)');
             menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+            h3.setAttribute('aria-expanded', menu.style.display !== 'none');
         }
+
 
         async function processImage() {
             const fileInput = document.getElementById('imageUpload');
@@ -724,7 +767,7 @@
                 formData.append('fallback_providers', '');
 
                 try {
-                    const response = await fetch('https://api.edenai.run/v2/ocr/ocr', {
+                    const response = await fetch('https://api.edenai.run/v2/ocr/image_ocr', {
                         method: 'POST',
                         headers: {
                             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMGY0OWVlZTItMmViYi00MGM2LTk2MTktNDgwYmY0YjM4N2M5IiwidHlwZSI6ImFwaV90b2tlbiJ9.2XV4S3Bx1uMX-MMNP3-xBaoLzuyzrAdwAYdqKttr6I4', 
